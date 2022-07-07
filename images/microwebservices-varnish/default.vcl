@@ -1,7 +1,7 @@
 vcl 4.0;
 
 backend default {
-    .host = "microwebservices-web:8080";
+    .host = "microwebservices-api:8080";
     
     # pour permettre de télécharger les fichiers KBART qui prennent 
     # plus de 10 minutes à se générer (10m = 600s), on règle le timeout
