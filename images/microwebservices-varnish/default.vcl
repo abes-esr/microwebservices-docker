@@ -1,4 +1,5 @@
-vcl 4.0;
+vcl 4.1;
+
 
 backend default {
     .host = "microwebservices-api:8080";
@@ -18,14 +19,9 @@ sub vcl_recv {
     if (req.method == "PURGE") {
         return (purge);
     }
-    # ne met pas en cache les routes qui ne sont pas avec ?servicekey=bacon_package2kbart
-    # et avec un params qui contient des lettre en majuscule, des underscores et des tirets 
-    # et qui se termine par une annee sur 4 chiffres, exemple JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14
-    if (req.url !~ "^/MicroWebServices/\?servicekey=bacon_package2kbart&params=[A-Z_-]+_[0-9]{4}") {
-        return(pass);
-    }
-    #all except /MicroWebServices/+ should look for cache
-    elseif (req.url ~ "/MicroWebServices/.+") {
+      
+    # on met en cache toutes les URL des microwebservices
+    if (req.url ~ "/MicroWebServices/.+") {
       	return(hash);
     }
 
@@ -40,18 +36,46 @@ sub vcl_backend_response {
         return (deliver);
     }
 
-    # met en cache uniquement les code 200 (succès)
+
+    # ne met pas en cache si la réponse HTTP n'est pas un code 200 (succès)
     if (beresp.status != 200) {
         set beresp.ttl = 120s;
         set beresp.uncacheable = true;
         return (deliver);
-    } else {
+    }
+    
+    # met en cache le <ppn>.xml
+    # exemple d'URL : /MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=biblio&.+") {
         unset beresp.http.Set-Cookie;
-        set beresp.ttl = 300d;  # en cache pour 300 jours
-        set beresp.grace = 300d;
+        set beresp.ttl = 10s;  # en cache pour 10 secondes
+        set beresp.grace = 10s;
         return (deliver);
     }
 
+    # met en cache les packages bacon datés
+    # exemple d'URL : /MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_pck2kbart&para1=[A-Z_-]+_[0-9]{4}") {
+        unset beresp.http.Set-Cookie;
+        set beresp.ttl = 300d;  # en cache pour 300 jours
+        set beresp.grace = 300d;
+        return(deliver);
+    }
+
+    # met en cache les packages bacon non datés
+    # le cache doit être plus court (24h) tant que le PURGE n'est pas implémenté dans cerclesbacon
+    # exemple d'URL : /MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND&para2=JSTOR_COUPERIN_IRELAND&para3=JSTOR_COUPERIN_IRELAND&format=application/vnd.ms-excel
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_pck2kbart&para1=[A-Z_-]") {
+        unset beresp.http.Set-Cookie;
+        set beresp.ttl = 24h;  # en cache pour 24h
+        set beresp.grace = 24h;
+        return(deliver);
+    }
+
+    # tout le reste n'est pas mis en cache
+    set beresp.ttl = 120s;
+    set beresp.uncacheable = true;
+    return (deliver);
 }
 
 sub vcl_deliver {
