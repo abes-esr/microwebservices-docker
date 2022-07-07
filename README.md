@@ -79,7 +79,7 @@ Pour utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL 
 Exemple pour vider le cache Varnish sur une URL précise :
 ```
 curl -X PURGE -v "http://127.0.0.1:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml"
-curl -X PURGE -v "http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel"
+curl -X PURGE -v "http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel"
 ```
 
 Pour afficher des logs de debug du système de cache varnish, une fois que l'application est lancée, on peut utiliser cette commande :
