@@ -25,7 +25,7 @@ services:
       - ${MICROWEBSERVICE_HTTP_PORT}:8080
 
   bacon-cache-warmer:
-    image: abesesr/bacon-cache-warmer:1.0.2
+    image: abesesr/bacon-cache-warmer:1.1.0
     container_name: bacon-cache-warmer
     restart: unless-stopped
     environment:
