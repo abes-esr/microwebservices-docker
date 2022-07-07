@@ -65,10 +65,7 @@ Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple :
   - Remarque : ce meme fichier peut être téléchargé depuis son URL publique ici :  
     https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR_2022-01-01
 
-Pour utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 8080 par :
-- 8081 pour le cache varnish
-- 8082 pour le cache nginx
-- 8083 pour le cache apache
+Pour utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 8080 par 8081 (cache varnish)
 
 Exemple pour vider le cache Varnish sur une URL précise :
 ```
@@ -82,10 +79,6 @@ Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de d
 # Architecture
 
 Les flux réseaux sont les suivants :
-- Archi 1 : Navigateur web -> microwebservices-varnish -> microwebservices-web (MicroWebServices.war dans un tomcat9)
-- Archi 2 : Navigateur web -> microwebservices-nginx-cache -> microwebservices-web (MicroWebServices.war dans un tomcat9)
-- Archi 3 : Navigateur web -> microwebservices-web (MicroWebServices.war dans un tomcat9)
+- Navigateur web -> microwebservices-varnish -> microwebservices-web (MicroWebServices.war dans un tomcat9)
 
-L'architecture n°3 consiste à accéder directement sans aucun système de cache aux microwebservices (via le port 8080).
-Les architectures n°1 et 2 consistent à accéder aux microwebservices mais via un système de cache : cache varnish via le port 8081, ou cache nginx via le port 8082, ou cache apache via le port 8083
-
+La brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-web`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
