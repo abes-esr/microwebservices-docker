@@ -63,12 +63,12 @@ sub vcl_backend_response {
     }
 
     # met en cache les packages bacon non datés
-    # le cache doit être plus court (24h) tant que le PURGE n'est pas implémenté dans cerclesbacon
+    # le cache doit être plus court (12h) tant que le PURGE n'est pas implémenté dans cerclesbacon
     # exemple d'URL : /MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND&para2=JSTOR_COUPERIN_IRELAND&para3=JSTOR_COUPERIN_IRELAND&format=application/vnd.ms-excel
     if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_pck2kbart&para1=[A-Z_-]") {
         unset beresp.http.Set-Cookie;
-        set beresp.ttl = 24h;  # en cache pour 24h
-        set beresp.grace = 24h;
+        set beresp.ttl = 12h;  # en cache pour 12h
+        set beresp.grace = 12h;
         return(deliver);
     }
 
