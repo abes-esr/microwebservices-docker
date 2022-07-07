@@ -64,23 +64,23 @@ docker-compose up -d
 
 Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple : 
 - Pour le `<ppn>.xml` :  
-  http://127.0.0.1:8080/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
+  http://127.0.0.1:12080/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
 - URL qui marche (SGY TMX le 23/06/2022) :  
-  http://127.0.0.1:8080/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
+  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - Pour un petit fichier KBART :  
-  http://127.0.0.1:8080/MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=text/tab-separated-values
+  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=text/tab-separated-values
 - Pour un autre petit fichier KBART :  
-  http://127.0.0.1:8080/MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=text/tab-separated-values
+  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=text/tab-separated-values
 - Pour le téléchargement d'un très gros KBART (150Mo de taille et 10 minutes pour le générer) :  
-  http://127.0.0.1:8080/MicroWebServices/?servicekey=bacon_package2kbart&params=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=text/tab-separated-values
+  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_package2kbart&params=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=text/tab-separated-values
   - Remarque : ce meme fichier peut être téléchargé depuis son URL publique ici :  
     https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR_2022-01-01
 
-Pour utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 8080 par 8081 (cache varnish)
+Pour utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 12080 par 12081 (cache varnish)
 
 Exemple pour vider le cache Varnish sur une URL précise :
 ```
-curl -X PURGE -v "http://127.0.0.1:8081/MicroWebServices/?servicekey=bacon_package2kbart&params=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=text/tab-separated-values"
+curl -X PURGE -v "http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_package2kbart&params=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=text/tab-separated-values"
 ```
 
 # Sauvegarde de l'application
