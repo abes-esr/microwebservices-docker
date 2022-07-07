@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
     environment:
       - BACON_RSS_URL=https://bacon.abes.fr/rss
-      - BACON_MAX_URL_TO_WARM=0
+      - BACON_MAX_URL_TO_WARM=${BACON_MAX_URL_TO_WARM}
     depends_on:
       - microwebservices-api
 
