@@ -20,17 +20,10 @@ Si vous êtes en local il faut donc lancez son VPN car la phase de compilation a
 mkdir -p /opt/pod/microwebservices-docker/
 cd /opt/pod/microwebservices-docker/
 git clone https://git.abes.fr/depots/MicroWebServices.git ./images/microwebservices-api/
-```
 
-Pour mettre à jour l'application :
-```
-# mise à jour de MicroWebServices-docker
 cd /opt/pod/microwebservices-docker/
-git pull
-
-# mise à jour du code source des MicroWebServices
-cd /opt/pod/microwebservices-docker/images/microwebservices-api/
-git pull
+cp .env-dist .env
+# personnaliser alors le contenu du .env
 ```
 
 # Compilation de l'application
@@ -46,7 +39,25 @@ L'image docker nommée `MicroWebServices:0.0.1-SNAPSHOT` sera alors construite e
 Une fois la compilation de l'image docker terminée (cf section précédente) lancez ceci dans un terminal :
 ```
 cd /opt/pod/microwebservices-docker/
-docker-compose up
+docker-compose up -d
+```
+
+# Mise à jour de l'application
+
+Pour mettre à jour l'application :
+```
+# mise à jour de microwebservices-docker
+cd /opt/pod/microwebservices-docker/
+git pull
+
+# mise à jour du code source des MicroWebServices
+cd /opt/pod/microwebservices-docker/images/microwebservices-api/
+git pull
+
+# recompilation + redéploiement
+cd /opt/pod/microwebservices-docker/
+docker-compose build
+docker-compose up -d
 ```
 
 # Tester l'application
