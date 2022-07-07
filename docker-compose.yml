@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+
+  microwebservices-varnish:
+    build: ./images/microwebservices-varnish/
+    image: microwebservices-varnish:7.0.2
+    container_name: microwebservices-varnish
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    volumes:
+      - ./volumes/microwebservices-varnish/:/var/lib/varnish/
+    environment:
+      - VARNISH_SIZE=2G
+    depends_on:
+      - microwebservices-web
+
+  microwebservices-apache-cache:
+    build: ./images/microwebservices-apache-cache/
+    image: microwebservices-apache-cache:2.4.52
+    container_name: microwebservices-apache-cache
+    restart: unless-stopped
+    ports:
+      - 8083:80
+    volumes:
+      - ./volumes/microwebservices-apache-cache/:/var/cache/apache/
+    depends_on:
+      - microwebservices-web
+
+  microwebservices-nginx-cache:
+    build: ./images/microwebservices-nginx-cache/
+    image: microwebservices-nginx-cache:1.21.6
+    container_name: microwebservices-nginx-cache
+    restart: unless-stopped
+    ports:
+      - 8082:80
+    volumes:
+      - ./volumes/microwebservices-nginx-cache/:/var/cache/nginx_cache/
+        #- ./volumes/microwebservices-nginx-cache/:/var/cache/nginx/
+    depends_on:
+      - microwebservices-web
+ 
+  microwebservices-web:
+    build: ./images/microwebservices-web/
+    image: microwebservices-web:0.0.1-SNAPSHOT
+    container_name: microwebservices-web
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+
+  bacon-cache-warmer:
+    image: abesesr/bacon-cache-warmer:1.0.2
+    container_name: bacon-cache-warmer
+    restart: unless-stopped
+    environment:
+      - BACON_RSS_URL=https://bacon.abes.fr/rss
+      - BACON_MAX_URL_TO_WARM=0
+    depends_on:
+      - microwebservices-web
+
