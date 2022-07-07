@@ -19,7 +19,7 @@ Si vous êtes en local il faut donc lancez son VPN car la phase de compilation a
 ```
 mkdir -p /opt/pod/microwebservices-docker/
 cd /opt/pod/microwebservices-docker/
-git clone https://git.abes.fr/depots/MicroWebServices.git ./images/microwebservices-web/
+git clone https://git.abes.fr/depots/MicroWebServices.git ./images/microwebservices-api/
 ```
 
 Pour mettre à jour l'application :
@@ -29,7 +29,7 @@ cd /opt/pod/microwebservices-docker/
 git pull
 
 # mise à jour du code source des MicroWebServices
-cd /opt/pod/microwebservices-docker/images/microwebservices-web/
+cd /opt/pod/microwebservices-docker/images/microwebservices-api/
 git pull
 ```
 
@@ -79,6 +79,6 @@ Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de d
 # Architecture
 
 Les flux réseaux sont les suivants :
-- Navigateur web -> microwebservices-varnish -> microwebservices-web (MicroWebServices.war dans un tomcat9)
+- Navigateur web -> microwebservices-varnish -> microwebservices-api (MicroWebServices.war dans un tomcat9)
 
-La brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-web`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
+La brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-api`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
