@@ -83,6 +83,11 @@ Exemple pour vider le cache Varnish sur une URL précise :
 curl -X PURGE -v "http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_package2kbart&params=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=text/tab-separated-values"
 ```
 
+Pour afficher des logs de debug du système de cache varnish, une fois que l'application est lancée, on peut utiliser cette commande :
+```
+ docker exec -it microwebservices-varnish varnishlog
+```
+
 # Sauvegarde de l'application
 
 Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
