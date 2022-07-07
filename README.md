@@ -77,7 +77,7 @@ curl -X PURGE -v "http://127.0.0.1:8081/MicroWebServices/?servicekey=bacon_packa
 
 # Sauvegarde de l'application
 
-Il n'est pas nécessaire de sa/u/vegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
+Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
 
 # Architecture
 
