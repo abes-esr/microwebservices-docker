@@ -1,8 +1,8 @@
 # microwebservices-docker
 
-Ce dépôt centralise une maquette de configuration Docker permettant de compiler et déployer les microwebservices. Ce packaging Docker propose aussi un système de mise en cache des URL des MicroWebServices en utilisant au choix les outils Varnish (architecture 1) ou Nginx (architecture 2).
-
 L'application MicroWebServices (cf son [code source (non ouvert)](https://git.abes.fr/depots/MicroWebServices.git)) met à disposition des réseaux de l'Abes des API permettant de rechercher et récupérer les données du Sudoc via un pogramme informatique. 
+
+Ce dépôt a comme objectif de permettre le déploiement Docker des microwebservices en l'associant à un système de cache basé sur le logiciel Varnish (dans un premier temps dédié aux besoins BACON).
 
 Exemples d'API mis à disposition :
   - https://www.sudoc.fr/145561143.xml : permet de récupérer la notice dont le PPN est 145561143 au format XML.
