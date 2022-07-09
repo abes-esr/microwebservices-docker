@@ -9,10 +9,11 @@ services:
     restart: unless-stopped
     ports:
       - ${MICROWEBSERVICE_VARNISH_HTTP_PORT}:80
-    volumes:
-      - ./volumes/microwebservices-varnish/:/var/lib/varnish/
+#    volumes:
+#      - ./volumes/microwebservices-varnish/:/var/lib/varnish/
+#    tmpfs: /var/lib/varnish/varnishd:exec
     environment:
-      - VARNISH_SIZE=2G
+      VARNISH_SIZE: "2G"
     depends_on:
       - microwebservices-api
 
@@ -25,12 +26,19 @@ services:
       - ${MICROWEBSERVICE_HTTP_PORT}:8080
 
   bacon-cache-warmer:
-    image: abesesr/bacon-cache-warmer:1.1.0
+    image: abesesr/bacon-cache-warmer:1.2.0
     container_name: bacon-cache-warmer
     restart: unless-stopped
     environment:
-      - BACON_RSS_URL=https://bacon.abes.fr/rss
-      - BACON_MAX_URL_TO_WARM=${BACON_MAX_URL_TO_WARM}
+      BACON_RSS_URL: ${BACON_RSS_URL}
+      BACON_MAX_URL_TO_WARM: ${BACON_MAX_URL_TO_WARM}
+      BACON_DELAY_BETWEEN_WARM: ${BACON_DELAY_BETWEEN_WARM}
+      BACON_CACHEWARMER_JUST_ONCE: ${BACON_CACHEWARMER_JUST_ONCE}
+      BACON_CACHEWARMER_CRON: ${BACON_CACHEWARMER_CRON}
+      # SED pour tout chauffer
+      #BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\(.*\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
+      # SED pour chauffer que les KBART non datés
+      BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\([A-Z_\-]\+\)\(_[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
     depends_on:
-      - microwebservices-api
+      - microwebservices-varnish
 
