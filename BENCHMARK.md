@@ -98,7 +98,7 @@ Test de chargement des 50 premiers KBART :
 BACON_MAX_URL_TO_WARM=50
 ```
 
-Et avec unstorage backend de varnish de type "file" :
+Et avec unstorage backend de varnish de type "default" :
 ```yaml
 environment:
   VARNISH_STORAGE_BACKEND: "default,2G"
@@ -145,7 +145,7 @@ Test de chargement de tous les KBART :
 BACON_MAX_URL_TO_WARM=0
 ```
 
-Et avec unstorage backend de varnish de type "file" :
+Et avec unstorage backend de varnish de type "default" :
 ```yaml
 environment:
   VARNISH_STORAGE_BACKEND: "default,2G"
@@ -176,4 +176,56 @@ $ du -sh volumes/bacon-cache-warmer/
 
 $ wc -l volumes/bacon-cache-warmer/* | tail -1
   100409425 total
+```
+
+
+
+## Test n°5
+
+### Paramètre du test 
+
+Date du test : juillet 2022
+
+Test de chargement de tous les KBART :
+```
+# réglage dans .env
+BACON_MAX_URL_TO_WARM=0
+```
+
+Et avec unstorage backend de varnish de type "file" et en préalouant 50Go dans le fichier sur disque :
+```yaml
+environment:
+  VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
+```
+Et avec un chauffage des KBART non datés :
+```yaml
+environment:
+  BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\([A-Z_\-]\+\)\(_[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
+```
+
+Avec un stockage des KBART dans un répertoire pour pouvoir connaitre la taille réèle des fichiers :
+```yaml
+volumes:
+  - ./volumes/bacon-cache-warmer/:/opt/kbart/
+environment:
+  BACON_STORE_WARMED_TO_PATH: "/opt/kbart/"
+```
+
+### Résultats du test 
+
+Durée du test : 5h30
+
+```bash
+$ docker exec -it microwebservices-varnish du -sh /var/lib/varnish/file-cache.bin
+1.2G    /var/lib/varnish/file-cache.bin
+
+$ docker stats --no-stream microwebservices-varnish
+CONTAINER ID   NAME                       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O   PIDS
+ad47c1aec780   microwebservices-varnish   2.38%     642.8MiB / 12.38GiB   5.07%     1.67GB / 24.8GB   0B / 0B     217
+
+$ du -sh volumes/bacon-cache-warmer/
+23G     volumes/bacon-cache-warmer/
+
+$ wc -l volumes/bacon-cache-warmer/* | tail -1
+TODO
 ```

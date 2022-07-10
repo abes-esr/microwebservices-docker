@@ -14,7 +14,8 @@ services:
 #    tmpfs: /var/lib/varnish/varnishd:exec
     environment:
       #VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,2G"
-      VARNISH_STORAGE_BACKEND: "default,2G"
+      VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
+      #VARNISH_STORAGE_BACKEND: "default,2G"
     depends_on:
       - microwebservices-api
 
