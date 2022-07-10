@@ -2,14 +2,16 @@
 
 Le but de ces benchmark est de tester les différentes configurations possibles du cache varnish dans le but
 d'optimiser autant que possible les réglages pour viser deux objectifs :
-- la mise en cache persistente des KBART BACON qui occupent une place importante (environ 23Go pour les X packages KBART à la date de juillet 2022)
+- la mise en cache persistente des KBART BACON qui occupent une place importante (environ 23Go pour les 23014 packages KBART à la date de juillet 2022)
 - l'occupation mémoire RAM non infinie au niveau du serveur
 
 ## Test n°1
 
 ### Paramètre du test 
 
-Test de chargement de tous les KBART (soit XXX en juillet 2022):
+Date du test : juillet 2022
+
+Test de chargement de tous les KBART (soit 23014 en juillet 2022) :
 ```
 # réglage dans .env
 BACON_MAX_URL_TO_WARM=0
@@ -38,6 +40,8 @@ CONTAINER ID   NAME                       CPU %     MEM USAGE / LIMIT     MEM % 
 ## Test n°2
 
 ### Paramètre du test 
+
+Date du test : juillet 2022
 
 Test de chargement des 50 premiers KBART :
 ```
@@ -86,6 +90,8 @@ $ wc -l volumes/bacon-cache-warmer/* | tail -1
 
 ### Paramètre du test 
 
+Date du test : juillet 2022
+
 Test de chargement des 50 premiers KBART :
 ```
 # réglage dans .env
@@ -130,6 +136,8 @@ $ wc -l volumes/bacon-cache-warmer/* | tail -1
 ## Test n°4
 
 ### Paramètre du test 
+
+Date du test : juillet 2022
 
 Test de chargement de tous les KBART :
 ```
