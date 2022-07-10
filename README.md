@@ -97,3 +97,7 @@ Les flux réseaux sont les suivants :
 - Navigateur web -> microwebservices-varnish -> microwebservices-api (MicroWebServices.war dans un tomcat9)
 
 La brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-api`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
+
+# Benchmark
+
+Voir le [document dédié aux benchmarks](./BENCHMARK.md).
