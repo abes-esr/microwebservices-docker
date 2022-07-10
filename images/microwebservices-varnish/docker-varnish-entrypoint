@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+# examples (see https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html)
+# file,/var/lib/varnish/file-cache.bin,2G
+# default,2G
+export VARNISH_STORAGE_BACKEND=${VARNISH_STORAGE_BACKEND:='default,2G'}
+
 # this will check if the first argument is a flag
 # but only works if all arguments require a hyphenated flag
 # -v; -SL; -f arg; etc will work, but not arg1 arg2
@@ -13,7 +18,7 @@ if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]; then
 	    -a http=:80,HTTP \
 	    -a proxy=:8443,PROXY \
 	    -p feature=+http2 \
-	    -s file,/var/lib/varnish/file-cache.bin,$VARNISH_SIZE \
+	    -s $VARNISH_STORAGE_BACKEND \
 	    "$@"
 fi
 
