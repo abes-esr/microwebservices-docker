@@ -26,8 +26,6 @@ services:
     image: abesesr/bacon-cache-warmer:1.2.0
     container_name: bacon-cache-warmer
     restart: unless-stopped
-    volumes:
-      - ./volumes/bacon-cache-warmer/:/opt/kbart/
     environment:
       BACON_RSS_URL: ${BACON_RSS_URL}
       BACON_MAX_URL_TO_WARM: ${BACON_MAX_URL_TO_WARM}
