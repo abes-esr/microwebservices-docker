@@ -73,6 +73,8 @@ Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple :
   http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_pck2kbart&para1=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para2=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para3=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=application/vnd.ms-excel
   - Remarque : ce meme fichier peut être téléchargé depuis son URL publique ici :  
     https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR_2022-01-01
+- Pour télécharger le RSS de BACON :
+  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_rss&format=application/xml
 
 Pour utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 12080 par **12081** (cache varnish)
 
