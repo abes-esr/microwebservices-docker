@@ -9,13 +9,8 @@ services:
     restart: unless-stopped
     ports:
       - ${MICROWEBSERVICE_VARNISH_HTTP_PORT}:80
-#    volumes:
-#      - ./volumes/microwebservices-varnish/:/var/lib/varnish/
-#    tmpfs: /var/lib/varnish/varnishd:exec
     environment:
-      #VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,2G"
       VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
-      #VARNISH_STORAGE_BACKEND: "default,2G"
     depends_on:
       - microwebservices-api
 
@@ -44,7 +39,6 @@ services:
       #BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\(.*\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
       # SED pour chauffer que les KBART non datés
       BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\([A-Z_\-]\+\)\(_[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
-      BACON_STORE_WARMED_TO_PATH: '/opt/kbart/'
     depends_on:
       - microwebservices-varnish
 

@@ -2,7 +2,8 @@
 
 Le but de ces benchmark est de tester les différentes configurations possibles du cache varnish dans le but
 d'optimiser autant que possible les réglages pour viser deux objectifs :
-- la mise en cache persistente des KBART BACON qui occupent une place importante (environ 23Go pour les 23014 packages KBART à la date de juillet 2022)
+- la mise en cache persistente des KBART BACON qui occupent une place importante  
+  (environ 23Go pour les 23014 packages KBART à la date de juillet 2022)
 - l'occupation mémoire RAM non infinie au niveau du serveur
 
 ## Test n°1
@@ -227,5 +228,24 @@ $ du -sh volumes/bacon-cache-warmer/
 23G     volumes/bacon-cache-warmer/
 
 $ wc -l volumes/bacon-cache-warmer/* | tail -1
-TODO
+  100409425 total
 ```
+
+## Conclusions
+
+Le chauffage du cache des KBART non datés de BACON est une opération lourde qui prend environ 5h30 car certains KBART sont très lourds à être générés. Certains KBART prennent plus de 5 minutes (voir plus!) à être générés. La totalité des KBART non datés occupent un espace disque de 23Go (non compressés) et ils contiennent 100M de lignes.
+
+Une fois que les KBART sont dans le cache, ils deviennent alors disponibles instantanément (moins d'une seconde) car il ne sont plus recalculés coté ``microwebservices-api``.
+
+Les benchmark ci-dessus ne cherchent pas à optimiser la vitesse de disponibilité ou la vitesse de chauffage du cache. Ces benchmark cherchent à trouver la meilleur configuration au niveau du serveur pour éviter que la totalité des KBART ne soient mis en mémoire car cela pourrait la surcharger (il faudrait potentiellement dédiée 23Go de RAM). Les benchmarks testent ainsi des variation au niveau des [storage backend de varnish](https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html) : "default" et "file"
+
+**La meilleur configuration trouvée** est la suivante :
+```yaml
+    environment:
+      VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
+```
+
+Elle consiste à assigner 50Go à un fichier ``file-cache.bin`` qui reste dans le conteneur ``microwebservices-varnish``. Il permet à varnish de venir stocker sur disque les données à mettre en cache (les KBART de BACON donc) pour soulager la mémoire vive. Cela ne signifie pas que varnish n'utilisera pas de RAM mais il va chercher à équilibrer le stockage entre la RAM et le disque. Les tests sur le chauffage de tous les KBART non datés montrent l'équilibrage suivant : 1.2G sur disque et 650Mo en RAM.
+
+Note concernant la persistance des données de cache :  
+A noter que si le conteneur ``microwebservices-varnish`` est redémarré ou recréé, le cache est alors complètement réinitialisé. Le fichier ``file-cache.bin`` n'est donc pas une garantie de persistence des données et il est d'ailleurs inutile de le sauvegarder. Varnish ne propose a ce jour (juillet 2022) pas de "storage backend" opensource proposant la gestion de la persistance. Après quelques recherches, il existe le module [Massive Storage Engine de Varnish](https://docs.varnish-software.com/varnish-cache-plus/features/mse/) mais ce dernier n'est pas dans la distribution opensource de Varnish.
