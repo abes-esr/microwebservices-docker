@@ -32,7 +32,7 @@ cp .env-dist .env
 cd /opt/pod/microwebServices-docker/
 docker-compose build
 ```
-L'image docker nommée `MicroWebServices:0.0.1-SNAPSHOT` sera alors construite et contiendra `MicroWebServices.war` et un serveur tomcat9 prêt à l'emploi (cf section déploiement).
+L'image docker nommée `microwebservices-api:0.0.1-SNAPSHOT` sera alors construite et contiendra `MicroWebServices.war` et un serveur tomcat9 prêt à l'emploi (cf section déploiement).
 
 # Déploiement de l'application
 
