@@ -237,7 +237,7 @@ Le chauffage du cache des KBART non datés de BACON est une opération lourde qu
 
 Une fois que les KBART sont dans le cache, ils deviennent alors disponibles instantanément (moins d'une seconde) car il ne sont plus recalculés coté ``microwebservices-api``.
 
-Les benchmark ci-dessus ne cherchent pas à optimiser la vitesse de disponibilité ou la vitesse de chauffage du cache. Ces benchmark cherchent à trouver la meilleur configuration au niveau du serveur pour éviter que la totalité des KBART ne soient mis en mémoire car cela pourrait la surcharger (il faudrait potentiellement dédiée 23Go de RAM). Les benchmarks testent ainsi des variation au niveau des [storage backend de varnish](https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html) : "default" et "file"
+Les benchmark ci-dessus ne cherchent pas à optimiser la vitesse de disponibilité ou la vitesse de chauffage du cache. Ces benchmark cherchent à trouver la meilleur configuration au niveau du système de cache varnish pour éviter que la totalité des KBART ne soient mis en mémoire car cela pourrait la surcharger (il faudrait potentiellement dédiée 23Go de RAM). Les benchmarks testent ainsi des variations au niveau des [storage backend de varnish](https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html) : "default" et "file"
 
 **La meilleur configuration trouvée** est la suivante :
 ```yaml
