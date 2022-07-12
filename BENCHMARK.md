@@ -233,7 +233,7 @@ $ wc -l volumes/bacon-cache-warmer/* | tail -1
 
 ## Conclusions
 
-Le chauffage du cache des KBART non datés de BACON est une opération lourde qui prend environ 5h30 car certains KBART sont très lourds à être générés. Certains KBART prennent plus de 5 minutes (voir plus!) à être générés. La totalité des KBART non datés occupent un espace disque de 23Go (non compressés) et ils contiennent 100M de lignes.
+Le chauffage du cache des KBART non datés de BACON est une opération lourde qui prend environ 5h30 car certains KBART sont très lourds à être générés. Certains KBART prennent plus de 5 minutes (voir plus!) à être générés. La totalité des KBART occupent un espace disque de 23Go (non compressés) et ils contiennent 100M de lignes.
 
 Une fois que les KBART sont dans le cache, ils deviennent alors disponibles instantanément (moins d'une seconde) car il ne sont plus recalculés coté ``microwebservices-api``.
 
