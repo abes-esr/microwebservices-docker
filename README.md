@@ -95,10 +95,11 @@ Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de d
 
 # Architecture
 
-Les flux réseaux sont les suivants :
-- Navigateur web -> microwebservices-varnish -> microwebservices-api (MicroWebServices.war dans un tomcat9)
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vRwJzkixj2QSGXnGf4JdIaXOSpnsSyMznShoqJLXl9sX_5ewKdqlYIzjFcmobCYPsFOo_z5UfnlEGG6/pub?w=1319&amp;h=635">
 
-La brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-api`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
+(cf le [lien](https://docs.google.com/drawings/d/1BDwRgBFFtrGaaV31hevRFTcOMNNiOo4AhkPhbxxz9-8/edit) pour éditer le schéma)
+
+A noter que la brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-api`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
 
 # Benchmark
 
