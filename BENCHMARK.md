@@ -241,8 +241,8 @@ Les benchmark ci-dessus ne cherchent pas à optimiser la vitesse de disponibilit
 
 **La meilleur configuration trouvée** est la suivante :
 ```yaml
-    environment:
-      VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
+environment:
+  VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
 ```
 
 Elle consiste à assigner 50Go à un fichier ``file-cache.bin`` qui reste dans le conteneur ``microwebservices-varnish``. Il permet à varnish de venir stocker sur disque les données à mettre en cache (les KBART de BACON donc) pour soulager la mémoire vive. Cela ne signifie pas que varnish n'utilisera pas de RAM mais il va chercher à équilibrer le stockage entre la RAM et le disque. Les tests sur le chauffage de tous les KBART non datés montrent l'équilibrage suivant : 1.2G sur disque et 650Mo en RAM.
