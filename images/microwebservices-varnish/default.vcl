@@ -91,7 +91,11 @@ sub vcl_deliver {
 }
 
 sub vcl_hash {
-    # Purpose: Split cache by HTTP and HTTPS protocol.
-    hash_data(req.http.X-Forwarded-Proto);
+    # pour ne mettre en cache que le chemin dans l'URL: /MicroWebServices/?servicekey=.....
+    # sans ce réglage, la partie amont de l'URL comme le hostname est aussi utilisé comme clé de cache
+    # et par exemple : http://127.0.0.1:12081/MicroWebServices/?servicekey=.....
+    # sera considérée à tord comme différente de : http://localhost:12081/MicroWebServices/?servicekey=.....
+    hash_data(req.url);
+    return (lookup);
 }
 
