@@ -9,8 +9,10 @@ services:
     restart: unless-stopped
     ports:
       - ${MICROWEBSERVICE_VARNISH_HTTP_PORT}:80
+    volumes:
+      - ./volumes/microwebservices-varnish/:/var/lib/varnish/
     environment:
-      VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
+      VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,${MICROWEBSERVICE_CACHE_SIZE}"
     depends_on:
       - microwebservices-api
 

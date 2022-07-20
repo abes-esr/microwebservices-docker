@@ -16,11 +16,27 @@ Si vous êtes en local il faut donc lancez son VPN car la phase de compilation a
 
 # Installation de l'application
 
-```
-mkdir -p /opt/pod/microwebservices-docker/
+Préparation du répertoire contenant les configuration docker, le code source des microwebservices pour son image docker, et le répertoire où sera stocké le cache :
+```bash
+# personnaliser /opt/pod si besoin pour déployer l'application où vous le souhaitez
+cd /opt/pod/
+git clone https://github.com/abes-esr/microwebservices-docker.git
+# git clone git@github.com:abes-esr/microwebservices-docker.git
 cd /opt/pod/microwebservices-docker/
-git clone https://git.abes.fr/depots/MicroWebServices.git ./images/microwebservices-api/
 
+# récupération du code source des microwebservices pour pouvoir générer son image docker
+git clone https://git.abes.fr/depots/MicroWebServices.git ./images/microwebservices-api/
+# git clone git@git.abes.fr:depots/MicroWebServices.git ./images/microwebservices-api/
+
+# préparation du répertoire qui contiendra 
+# le gros fichier où varnish stockera son cache
+cd /opt/pod/microwebservices-docker/
+mkdir -p ./volumes/microwebservices-varnish/
+chmod 777 ./volumes/microwebservices-varnish/
+```
+
+Configuration docker du déploiement (cf le fichier [``.env-dist``](./.env-dist) qui contient toutes les variables personnalisables avec les explications) :
+```bash
 cd /opt/pod/microwebservices-docker/
 cp .env-dist .env
 # personnaliser alors le contenu du .env
@@ -28,7 +44,7 @@ cp .env-dist .env
 
 # Compilation de l'application
 
-```
+```bash
 cd /opt/pod/microwebServices-docker/
 docker-compose build
 ```
@@ -37,7 +53,7 @@ L'image docker nommée `MicroWebServices:0.0.1-SNAPSHOT` sera alors construite e
 # Déploiement de l'application
 
 Une fois la compilation de l'image docker terminée (cf section précédente) lancez ceci dans un terminal :
-```
+```bash
 cd /opt/pod/microwebservices-docker/
 docker-compose up -d
 ```
@@ -45,7 +61,7 @@ docker-compose up -d
 # Mise à jour de l'application
 
 Pour mettre à jour l'application :
-```
+```bash
 # mise à jour de microwebservices-docker
 cd /opt/pod/microwebservices-docker/
 git pull
@@ -59,6 +75,25 @@ cd /opt/pod/microwebservices-docker/
 docker-compose build
 docker-compose up -d
 ```
+
+## Supervision
+
+```bash
+# pour visualiser les logs de l'appli
+cd /opt/pod/microwebservices-docker/
+docker-compose logs -f --tail=100
+```
+
+Cela va afficher les 100 dernière lignes de logs générées par l'application et toutes les suivantes jusqu'au CTRL+C qui stoppera l'affichage temps réel des logs.
+
+## Sauvegardes
+
+Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
+
+L'unique éléments à sauvegarder est le suivant (mais ce dernier est très facile à régénérer en partant de ``.env-dist``, cf section installation):
+- ``/opt/pod/microwebservices-docker/.env`` : contient la configuration spécifique de notre déploiement
+
+Le contenu du répertoire ``/opt/pod/microwebservices-docker/volumes/microwebservices-varnish/`` n'a pas besoin d'être sauvegardé. Et au contraire il est judicieux de l'exclure du système de sauvegarde car sa taille peut être grande (50Go).
 
 # Tester l'application
 
@@ -89,9 +124,6 @@ Pour afficher des logs de debug du système de cache varnish, une fois que l'app
  docker exec -it microwebservices-varnish varnishlog
 ```
 
-# Sauvegarde de l'application
-
-Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
 
 # Architecture
 
