@@ -233,16 +233,16 @@ $ wc -l volumes/bacon-cache-warmer/* | tail -1
 
 ## Conclusions
 
-Le chauffage du cache des KBART non datés de BACON est une opération lourde qui prend environ 5h30 car certains KBART sont très lourds à être générés. Certains KBART prennent plus de 5 minutes (voir plus!) à être générés. La totalité des KBART non datés occupent un espace disque de 23Go (non compressés) et ils contiennent 100M de lignes.
+Le chauffage du cache des KBART non datés de BACON est une opération lourde qui prend environ 5h30 car certains KBART sont très lourds à être générés. Certains KBART prennent plus de 5 minutes (voir plus!) à être générés. La totalité des KBART occupent un espace disque de 23Go (non compressés) et ils contiennent 100M de lignes.
 
 Une fois que les KBART sont dans le cache, ils deviennent alors disponibles instantanément (moins d'une seconde) car il ne sont plus recalculés coté ``microwebservices-api``.
 
-Les benchmark ci-dessus ne cherchent pas à optimiser la vitesse de disponibilité ou la vitesse de chauffage du cache. Ces benchmark cherchent à trouver la meilleur configuration au niveau du serveur pour éviter que la totalité des KBART ne soient mis en mémoire car cela pourrait la surcharger (il faudrait potentiellement dédiée 23Go de RAM). Les benchmarks testent ainsi des variation au niveau des [storage backend de varnish](https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html) : "default" et "file"
+Les benchmark ci-dessus ne cherchent pas à optimiser la vitesse de disponibilité ou la vitesse de chauffage du cache. Ces benchmark cherchent à trouver la meilleur configuration au niveau du système de cache varnish pour éviter que la totalité des KBART ne soient mis en mémoire car cela pourrait la surcharger (il faudrait potentiellement dédiée 23Go de RAM). Les benchmarks testent ainsi des variations au niveau des [storage backend de varnish](https://varnish-cache.org/docs/trunk/users-guide/storage-backends.html) : "default" et "file"
 
 **La meilleur configuration trouvée** est la suivante :
 ```yaml
-    environment:
-      VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
+environment:
+  VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,50G"
 ```
 
 Elle consiste à assigner 50Go à un fichier ``file-cache.bin`` qui reste dans le conteneur ``microwebservices-varnish``. Il permet à varnish de venir stocker sur disque les données à mettre en cache (les KBART de BACON donc) pour soulager la mémoire vive. Cela ne signifie pas que varnish n'utilisera pas de RAM mais il va chercher à équilibrer le stockage entre la RAM et le disque. Les tests sur le chauffage de tous les KBART non datés montrent l'équilibrage suivant : 1.2G sur disque et 650Mo en RAM.
