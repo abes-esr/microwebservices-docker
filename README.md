@@ -46,6 +46,8 @@ cp .env-dist .env
 
 ```bash
 cd /opt/pod/microwebServices-docker/
+chmod +r images/microwebservices-varnish/*
+chmod +rx images/microwebservices-varnish/docker-varnish-entrypoint
 docker-compose build
 ```
 L'image docker nommée `microwebservices-api:0.0.1-SNAPSHOT` sera alors construite et contiendra `MicroWebServices.war` et un serveur tomcat9 prêt à l'emploi (cf section déploiement).
