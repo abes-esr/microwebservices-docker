@@ -99,19 +99,26 @@ Le contenu du répertoire ``/opt/pod/microwebservices-docker/volumes/microwebser
 
 Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple : 
 - Pour le `<ppn>.xml` :  
-  http://127.0.0.1:12080/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
+  http://127.0.0.1:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
 - Pour un petit fichier KBART daté :
-  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
+  http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - Pour un autre petit fichier KBART :  
-  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
+  http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - Pour le téléchargement d'un très gros KBART (150Mo de taille et 10 minutes pour le générer) :  
-  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_pck2kbart&para1=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para2=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para3=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=application/vnd.ms-excel
+  http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para2=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para3=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=application/vnd.ms-excel
   - Remarque : ce meme fichier peut être téléchargé depuis son URL publique ici :  
     https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR_2022-01-01
 - Pour télécharger le RSS de BACON :
-  http://127.0.0.1:12080/MicroWebServices/?servicekey=bacon_rss&format=application/xml
+  http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
 
-Pour utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 12080 par **12081** (cache varnish)
+Les mêmes URL sur diplotaxis-dev :
+- http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
+- http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
+- http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
+- http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
+
+
+Pour ne pas utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 12081 par **12080** (cela appelera directement le conteneur ``microwebservice-api`` sans mise en cache)
 
 Exemple pour vider le cache Varnish sur une URL précise :
 ```
