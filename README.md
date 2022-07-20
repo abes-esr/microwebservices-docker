@@ -14,7 +14,7 @@ Plus d'exemples ici : https://api.gouv.fr/les-api/api-sudoc
 Le code source des MicroWebService n'est pas ouvert. Ce dépôt n'est donc utilisable que par les agents de l'Abes sous VPN.
 Si vous êtes en local il faut donc lancez son VPN car la phase de compilation aura besoin d'accès à https://articaftory.abes.fr et la phase de déploiement/exécution aura besoin d'accès à Oracle.
 
-# Installation de l'application
+## Installation de l'application
 
 Préparation du répertoire contenant les configuration docker, le code source des microwebservices pour son image docker, et le répertoire où sera stocké le cache :
 ```bash
@@ -42,7 +42,7 @@ cp .env-dist .env
 # personnaliser alors le contenu du .env
 ```
 
-# Compilation de l'application
+## Compilation de l'application
 
 ```bash
 cd /opt/pod/microwebServices-docker/
@@ -52,7 +52,7 @@ docker-compose build
 ```
 L'image docker nommée `microwebservices-api:0.0.1-SNAPSHOT` sera alors construite et contiendra `MicroWebServices.war` et un serveur tomcat9 prêt à l'emploi (cf section déploiement).
 
-# Déploiement de l'application
+## Déploiement de l'application
 
 Une fois la compilation de l'image docker terminée (cf section précédente) lancez ceci dans un terminal :
 ```bash
@@ -60,7 +60,7 @@ cd /opt/pod/microwebservices-docker/
 docker-compose up -d
 ```
 
-# Mise à jour de l'application
+## Mise à jour de l'application
 
 Pour mettre à jour l'application :
 ```bash
@@ -97,7 +97,7 @@ L'unique éléments à sauvegarder est le suivant (mais ce dernier est très fac
 
 Le contenu du répertoire ``/opt/pod/microwebservices-docker/volumes/microwebservices-varnish/`` n'a pas besoin d'être sauvegardé. Et au contraire il est judicieux de l'exclure du système de sauvegarde car sa taille peut être grande (50Go).
 
-# Tester l'application
+## Tester l'application
 
 Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple : 
 - Pour le `<ppn>.xml` :  
@@ -140,7 +140,7 @@ Pour afficher des logs de debug du système de cache varnish, une fois que l'app
 ```
 
 
-# Architecture
+## Architecture
 
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vRwJzkixj2QSGXnGf4JdIaXOSpnsSyMznShoqJLXl9sX_5ewKdqlYIzjFcmobCYPsFOo_z5UfnlEGG6/pub?w=1319&amp;h=635">
 
@@ -148,6 +148,6 @@ Pour afficher des logs de debug du système de cache varnish, une fois que l'app
 
 A noter que la brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-api`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
 
-# Benchmark
+## Benchmark
 
 Voir le [document dédié aux benchmarks](./BENCHMARK.md).
