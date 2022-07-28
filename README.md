@@ -45,7 +45,7 @@ cp .env-dist .env
 ## Compilation de l'application
 
 ```bash
-cd /opt/pod/microwebServices-docker/
+cd /opt/pod/microwebservices-docker/
 chmod +r images/microwebservices-varnish/*
 chmod +x images/microwebservices-varnish/docker-varnish-entrypoint
 docker-compose build
