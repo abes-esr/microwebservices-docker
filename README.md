@@ -51,12 +51,18 @@ docker-compose build
 ```
 L'image docker nommée `microwebservices-api:0.0.1-SNAPSHOT` sera alors construite et contiendra `MicroWebServices.war` et un serveur tomcat9 prêt à l'emploi (cf section déploiement).
 
-## Déploiement de l'application
+## Démarrage et arrêt de l'application
 
-Une fois la compilation de l'image docker terminée (cf section précédente) lancez ceci dans un terminal :
+Une fois la compilation de l'image docker terminée (cf section précédente) lancez ceci dans un terminal pour la démarrer :
 ```bash
 cd /opt/pod/microwebservices-docker/
 docker-compose up -d
+```
+
+Et lancer ceci pour la stopper :
+```bash
+cd /opt/pod/microwebservices-docker/
+docker-compose stop
 ```
 
 ## Mise à jour de l'application
