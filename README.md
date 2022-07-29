@@ -110,7 +110,7 @@ docker exec -it microwebservices-varnish varnishlog
 
 Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
 
-L'unique éléments à sauvegarder est le suivant (mais ce dernier est très facile à régénérer en partant de ``.env-dist``, cf section installation):
+L'unique éléments à sauvegarder est le suivant (mais ce dernier est très facile à régénérer en partant de [``.env-dist``](./.env-dist), cf [section installation](#installation)):
 - ``/opt/pod/microwebservices-docker/.env`` : contient la configuration spécifique de notre déploiement
 
 Le contenu du répertoire ``/opt/pod/microwebservices-docker/volumes/microwebservices-varnish/`` n'a pas besoin d'être sauvegardé. Et au contraire il est judicieux de l'exclure du système de sauvegarde car sa taille peut être grande (50Go).
