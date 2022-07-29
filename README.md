@@ -13,7 +13,11 @@ Exemples d'API mises à disposition par les microwebservices :
 Le code source des MicroWebService n'est pas ouvert. Ce dépôt n'est donc utilisable que par les agents de l'Abes sous VPN.
 Si vous êtes en local il faut donc lancez son VPN car la phase de compilation aura besoin d'accès à https://articaftory.abes.fr et la phase de déploiement/exécution aura besoin d'accès à Oracle.
 
-## Installation de l'application
+Les prérequis logiciels sont :
+- ``docker``
+- ``docker-compose``
+
+## Installation
 
 Préparation du répertoire contenant les configuration docker, le code source des microwebservices pour son image docker, et le répertoire où sera stocké le cache :
 ```bash
