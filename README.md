@@ -1,13 +1,12 @@
 # microwebservices-docker
 
-L'application MicroWebServices (cf son [code source (non ouvert)](https://git.abes.fr/depots/MicroWebServices.git)) met à disposition des réseaux de l'Abes des API permettant de rechercher et récupérer les données du Sudoc via un pogramme informatique. 
+L'application MicroWebServices (cf son [code source (non ouvert)](https://git.abes.fr/depots/MicroWebServices.git)) met à disposition des réseaux de l'Abes des [API permettant de rechercher et récupérer les données du Sudoc](https://api.gouv.fr/les-api/api-sudoc) via un pogramme informatique. 
 
 Ce dépôt a comme objectif de permettre le déploiement Docker des microwebservices en l'associant à un système de cache basé sur le logiciel Varnish (dans un premier temps dédié aux besoins BACON).
 
-Exemples d'API mis à disposition :
-  - https://www.sudoc.fr/145561143.xml : permet de récupérer la notice dont le PPN est 145561143 au format XML.
-
-Plus d'exemples ici : https://api.gouv.fr/les-api/api-sudoc
+Exemples d'API mises à disposition par les microwebservices :
+  - https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII : permet de récupérer le KBART (fichier tsv) du package/bouquet JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
+  - https://www.sudoc.fr/145561143.xml : permet de récupérer la notice dont le PPN est 145561143 au format XML (cette URL ne passe pas encore par le système de cache à la date du 27/07/2022)
 
 ## Prérequis
 
