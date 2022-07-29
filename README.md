@@ -53,7 +53,9 @@ chmod +r images/microwebservices-varnish/*
 chmod +x images/microwebservices-varnish/docker-varnish-entrypoint
 docker-compose build
 ```
-L'image docker nommée `microwebservices-api:0.0.1-SNAPSHOT` sera alors construite et contiendra `MicroWebServices.war` et un serveur tomcat9 prêt à l'emploi (cf section déploiement).
+Les images docker suivantes seront alors créées en local :
+  - `microwebservices-api:0.0.1-SNAPSHOT` : contiendra `MicroWebServices.war` et un serveur tomcat9 prêt à l'emploi
+  - `microwebservices-varnish:7.0.2` : contiendra le varnish préconfiguré pour fonctionner avec les microwebservices
 
 ## Démarrage et arrêt de l'application
 
