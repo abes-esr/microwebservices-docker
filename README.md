@@ -123,7 +123,7 @@ Le contenu du répertoire ``/opt/pod/microwebservices-docker/volumes/microwebser
 
 ## Tester l'application
 
-Les URL suivantes permettent de tester que l'application répond correctement et en particulier de tester son système de cache. A titre d'exemple, on peut observer que le package KBART ``LN_FRANCE_ALLEBOOKS-PFEDITEUR`` (180 000 lignes pour 180 Mo) arrive à être récupéré en environ 10 minutes sans le système de cache et arrive à être récupéré en environ **8 secondes avec le système de cache**.
+Les URL suivantes permettent de tester que l'application répond correctement et en particulier de tester son système de cache. A titre d'exemple, on peut observer que le package KBART ``LN_FRANCE_ALLTITLES-PFEDITEUR`` (180 000 lignes pour 180 Mo) arrive à être récupéré en environ 10 minutes sans le système de cache et arrive à être récupéré en environ **8 secondes avec le système de cache**.
 
 Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple : 
 - Pour le `<ppn>.xml` :  
@@ -135,13 +135,13 @@ Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple :
 - Pour le téléchargement d'un très gros KBART (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré) :  
   http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para2=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&para3=LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01&format=application/vnd.ms-excel
   - Remarque : ce meme fichier peut être téléchargé depuis son URL publique ici :  
-    https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR_2022-01-01
+    https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR_2022-01-01
 - Pour télécharger le RSS de BACON :
   http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
 
 Les mêmes URL sur l'environnement de dev (diplotaxis-dev pour les URL internes) :
 - https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
-- https://bacon-dev.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
+- https://bacon-dev.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
@@ -149,7 +149,7 @@ Les mêmes URL sur l'environnement de dev (diplotaxis-dev pour les URL internes)
 
 Les mêmes URL sur l'environnement de test (diplotaxis-test pour les URL internes) :
 - https://bacon-test.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
-- https://bacon-test.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
+- https://bacon-test.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
