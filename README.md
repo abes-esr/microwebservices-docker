@@ -85,13 +85,13 @@ docker-compose up -d
 
 ## Supervision
 
+
+Pour afficher les 100 dernière lignes de logs générées par l'application et toutes les suivantes jusqu'au CTRL+C qui stoppera l'affichage temps réel des logs :
 ```bash
 # pour visualiser les logs de l'appli
 cd /opt/pod/microwebservices-docker/
 docker-compose logs -f --tail=100
 ```
-
-Cela va afficher les 100 dernière lignes de logs générées par l'application et toutes les suivantes jusqu'au CTRL+C qui stoppera l'affichage temps réel des logs.
 
 Pour consulter l'espace disque occupé par le cache de Varnish (dans cet exemple : 1,6Go sont utilisés par le cache) :
 ```bash
