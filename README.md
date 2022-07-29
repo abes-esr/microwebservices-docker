@@ -125,17 +125,21 @@ Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple :
 - Pour télécharger le RSS de BACON :
   http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
 
-Les mêmes URL sur diplotaxis-dev :
-- http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
+Les mêmes URL sur l'environnement de dev (diplotaxis-dev pour les URL internes) :
+- https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
+- https://bacon-dev.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR (attention, gros KBART de 180Mo)
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
+- http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
 
-Les mêmes URL sur diplotaxis-test :
-- http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
+Les mêmes URL sur l'environnement de test (diplotaxis-test pour les URL internes) :
+- https://bacon-test.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
+- https://bacon-test.abes.fr/package2kbart/LN_FRANCE_ALLEBOOKS-PFEDITEUR (attention, gros KBART de 180Mo)
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
+- http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
 
 
 Pour ne pas utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 12081 par **12080** (cela appelera directement le conteneur ``microwebservice-api`` sans mise en cache)
