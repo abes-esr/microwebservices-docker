@@ -176,7 +176,7 @@ Pour vider le cache, deux façon de faire :
 
 (cf le [lien](https://docs.google.com/drawings/d/1BDwRgBFFtrGaaV31hevRFTcOMNNiOo4AhkPhbxxz9-8/edit) pour éditer le schéma)
 
-A noter que la brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-api`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/develop/images/microwebservices-varnish/default.vcl#L21-L30).
+A noter que la brique ``microwebservices-varnish`` met en cache les retours des requêtes HTTP de ``microwebservices-api`` en fonction de [critères dans l'URL](https://github.com/abes-esr/microwebservices-docker/blob/546d829d89463b2e9abdc2bca6e05aa92b1cb4d1/images/microwebservices-varnish/default.vcl#L47-L73).
 
 ## Benchmark
 
