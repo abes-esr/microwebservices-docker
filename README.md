@@ -167,6 +167,18 @@ Pour afficher des logs de debug du système de cache varnish, une fois que l'app
  docker exec -it microwebservices-varnish varnishlog
 ```
 
+## Vider le cache
+
+Pour vider le cache, deux façon de faire :
+1) au niveau technique on peut le vider entièrement en redémarrant le conteneur `microwebservices-varnish` de cette façon :
+   ```bash
+   cd /opt/pod/microwebservices-docker/
+   docker-compose restart microwebservices-varnish
+   ```
+ 2) au niveau technico-fonctionnel, on peut vider des éléments ciblés du cache en appelant la méthode HTTP ``PURGE`` sur des URL précises, exemple :
+   ```bash
+   curl -X PURGE -v "https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII"
+   ```
 
 ## Architecture
 
