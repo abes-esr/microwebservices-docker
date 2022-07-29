@@ -156,16 +156,6 @@ Les mêmes URL sur l'environnement de test (diplotaxis-test pour les URL interne
 
 Pour ne pas utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 12081 par **12080** (cela appelera directement le conteneur ``microwebservice-api`` sans mise en cache)
 
-Exemple pour vider le cache Varnish sur une URL précise :
-```
-curl -X PURGE -v "http://127.0.0.1:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml"
-curl -X PURGE -v "http://127.0.0.1:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel"
-```
-
-Pour afficher des logs de debug du système de cache varnish, une fois que l'application est lancée, on peut utiliser cette commande :
-```
- docker exec -it microwebservices-varnish varnishlog
-```
 
 ## Vider le cache
 
@@ -175,7 +165,7 @@ Pour vider le cache, deux façon de faire :
    cd /opt/pod/microwebservices-docker/
    docker-compose restart microwebservices-varnish
    ```
- 2) au niveau technico-fonctionnel, on peut vider des éléments ciblés du cache en appelant la méthode HTTP ``PURGE`` sur des URL précises, exemple :
+2) au niveau technico-fonctionnel, on peut vider des éléments ciblés du cache en appelant la méthode HTTP ``PURGE`` sur des URL précises, exemple :
    ```bash
    curl -X PURGE -v "https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII"
    ```
