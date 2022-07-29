@@ -88,6 +88,14 @@ docker-compose logs -f --tail=100
 
 Cela va afficher les 100 dernière lignes de logs générées par l'application et toutes les suivantes jusqu'au CTRL+C qui stoppera l'affichage temps réel des logs.
 
+Pour consulter l'espace disque occupé par le cache de Varnish (dans cet exemple : 1,6Go sont utilisés par le cache) :
+```bash
+[gully@levant.abes.fr@diplotaxis-test microwebservices-docker]$ pwd
+/opt/pod/microwebservices-docker
+[gully@levant.abes.fr@diplotaxis-test microwebservices-docker]$ du -sh volumes/
+1.6G    volumes/
+```
+
 ## Sauvegardes
 
 Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
