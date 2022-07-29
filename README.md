@@ -96,6 +96,11 @@ Pour consulter l'espace disque occupé par le cache de Varnish (dans cet exemple
 1.6G    volumes/
 ```
 
+Pour afficher les logs internes du système de cache ``microwebservice-varnish`` (peut être utile pour mieux comprendre comment le système de cache travail), une fois que le conteneur ``microwebservice-varnish`` est lancé, il suffit de lancer la commande suivante pour voir en temps réèl la consultation du cache (CTRL+C pour quitter) :
+```bash
+docker exec -it microwebservices-varnish varnishlog
+```
+
 ## Sauvegardes
 
 Il n'est pas nécessaire de sauvegarder l'application car elle ne stock pas de données. La totalité des données de l'applications sont présentes dans la base de données Oracle.
