@@ -123,6 +123,8 @@ Le contenu du répertoire ``/opt/pod/microwebservices-docker/volumes/microwebser
 
 ## Tester l'application
 
+Les URL suivantes permettent de tester que l'application répond correctement et en particulier de tester son système de cache. A titre d'exemple, on peut observer que le package KBART ``LN_FRANCE_ALLEBOOKS-PFEDITEUR`` (180 000 lignes pour 150 Mo) arrive à être récupéré en environ 10 minutes sans le système de cache et arrive à être récupéré en environ **8 secondes avec le système de cache**.
+
 Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple : 
 - Pour le `<ppn>.xml` :  
   http://127.0.0.1:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
