@@ -19,8 +19,6 @@ services:
       - ./volumes/microwebservices-varnish/:/var/lib/varnish/
     environment:
       VARNISH_STORAGE_BACKEND: "file,/var/lib/varnish/file-cache.bin,${MICROWEBSERVICE_CACHE_SIZE}"
-    depends_on:
-      - microwebservices-api
     labels:
       # pour envoyer les logs dans le puits de log de l'abes
       - "co.elastic.logs/enabled=true"
@@ -42,6 +40,15 @@ services:
     restart: unless-stopped
     ports:
       - ${MICROWEBSERVICE_HTTP_PORT}:8080
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s 'http://localhost:8080/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml' | grep -q 'www.sudoc.fr'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
     labels:
       # pour envoyer les logs dans le puits de log de l'abes
       - "co.elastic.logs/enabled=true"
@@ -72,7 +79,10 @@ services:
       # SED pour chauffer que les KBART non datés
       BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\([A-Z_\-]\+\)\(_[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
     depends_on:
-      - microwebservices-varnish
+      microwebservices-varnish:
+        condition: service_started
+      microwebservices-api:
+        condition: service_healthy
     labels:
       # pour envoyer les logs dans le puits de log de l'abes
       - "co.elastic.logs/enabled=true"
