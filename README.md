@@ -176,6 +176,20 @@ Les mêmes URL sur l'environnement de test (diplotaxis-test pour les URL interne
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_list&format=text/json
 
 
+Les mêmes URL sur l'environnement de prod (diplotaxis-prod pour les URL internes) :
+- https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
+- https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_history&format=text/json&params=BNF_GLOBAL_GALLICA-ALLJOURNALS
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_multiversions&format=text/json
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_filter&format=text/json&providerid=0&labelled=0&istex=1&standardpackage=1&masterlist=1&mixte=1&monograph=1&serial=1
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_provider&format=text/json
+- http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_list&format=text/json
+
+
 Pour ne pas utiliser la mise en cache sur ces URL, conservez exactement les mêmes URL et remplacez le port 12081 par **12080** (cela appelera directement le conteneur ``microwebservice-api`` sans mise en cache)
 
 
