@@ -203,7 +203,7 @@ Pour vider le cache, deux façon de faire :
    ```
 2) au niveau technico-fonctionnel, on peut vider des éléments ciblés du cache en appelant la méthode HTTP ``PURGE`` sur des URL précises, exemple :
    ```bash
-   curl -X PURGE -v "https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII"
+   curl -X PURGE -v "https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.txt"
    ```
 
 ## Architecture
