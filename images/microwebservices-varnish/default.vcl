@@ -57,7 +57,7 @@ sub vcl_backend_response {
 
 
     # met en cache les packages bacon datés
-    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11
+    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.txt
     # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
     if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_pck2kbart&para1=[A-Z_-]+_[0-9]{4}") {
         unset beresp.http.Set-Cookie;
@@ -69,9 +69,29 @@ sub vcl_backend_response {
 
     # met en cache les packages bacon non datés
     # le cache doit être plus court (12h) tant que le PURGE n'est pas implémenté dans cerclesbacon
-    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND
+    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND.txt
     # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND&para2=JSTOR_COUPERIN_IRELAND&para3=JSTOR_COUPERIN_IRELAND&format=application/vnd.ms-excel
     if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_pck2kbart&para1=[A-Z_-]") {
+        unset beresp.http.Set-Cookie;
+        set beresp.ttl = 12h;  # en cache pour 12h
+        set beresp.grace = 12h;
+        return(deliver);
+    }
+    
+    # met en cache les packages bacon datés avec des extensions .xml ou .json
+    # (remarque: ces urls ne passe pas par le service "bacon_pck2kbart")
+    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.xml
+    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.json
+    # exemple d'URL interne : /MicroWebServices/servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/xml
+    # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=text/json
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_package2kbart&params=[A-Z_-]+_[0-9]{4}") {
+        unset beresp.http.Set-Cookie;
+        set beresp.ttl = 300d;  # en cache pour 300 jours
+        set beresp.grace = 300d;
+        return(deliver);
+    }
+    # idem pour les .json et .xml non datés
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_package2kbart&params=[A-Z_-]") {
         unset beresp.http.Set-Cookie;
         set beresp.ttl = 12h;  # en cache pour 12h
         set beresp.grace = 12h;
