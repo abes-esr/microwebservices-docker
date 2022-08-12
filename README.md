@@ -148,8 +148,10 @@ Ouvrez votre navigateur Web ou lancez un cURL sur les URL locale, par exemple :
 
 
 Les mêmes URL sur l'environnement de dev (diplotaxis-dev pour les URL internes) :
-- https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
-- https://bacon-dev.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
+- https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.txt
+- https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.xml
+- https://bacon-dev.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.json
+- https://bacon-dev.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR.txt (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - http://diplotaxis-dev.v212.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
@@ -163,8 +165,10 @@ Les mêmes URL sur l'environnement de dev (diplotaxis-dev pour les URL internes)
 
 
 Les mêmes URL sur l'environnement de test (diplotaxis-test pour les URL internes) :
-- https://bacon-test.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
-- https://bacon-test.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
+- https://bacon-test.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.txt
+- https://bacon-test.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.xml
+- https://bacon-test.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.json
+- https://bacon-test.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR.txt (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - http://diplotaxis-test.v202.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
@@ -177,8 +181,10 @@ Les mêmes URL sur l'environnement de test (diplotaxis-test pour les URL interne
 
 
 Les mêmes URL sur l'environnement de prod (diplotaxis-prod pour les URL internes) :
-- https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII
-- https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
+- https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.txt
+- https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.xml
+- https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII.json
+- https://bacon.abes.fr/package2kbart/LN_FRANCE_ALLTITLES-PFEDITEUR.txt (attention, gros KBART de 180Mo et 180 000 lignes qui prend 10 minutes pour être généré)
 - http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_IRELAND_2019-04-11&para2=JSTOR_COUPERIN_IRELAND_2019-04-11&para3=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/vnd.ms-excel
 - http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_pck2kbart&para1=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para2=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&para3=JSTOR_COUPERIN_ARTS-AND-SCIENCES-VIII_2021-12-14&format=application/vnd.ms-excel
 - http://diplotaxis-prod.v102.abes.fr:12081/MicroWebServices/?servicekey=bacon_rss&format=application/xml
