@@ -82,7 +82,7 @@ sub vcl_backend_response {
     # (remarque: ces urls ne passe pas par le service "bacon_pck2kbart")
     # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.xml
     # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.json
-    # exemple d'URL interne : /MicroWebServices/servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/xml
+    # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/xml
     # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=text/json
     if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_package2kbart&params=[A-Z_-]+_[0-9]{4}") {
         unset beresp.http.Set-Cookie;
