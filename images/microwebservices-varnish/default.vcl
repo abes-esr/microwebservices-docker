@@ -127,8 +127,8 @@ sub vcl_backend_response {
     # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_filter&format=text/json&providerid=0&labelled=0&istex=1&standardpackage=1&masterlist=1&mixte=1&monograph=1&serial=1
     if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_filter") {
         unset beresp.http.Set-Cookie;
-        set beresp.ttl = 12h;  # en cache pour 12h
-        set beresp.grace = 12h;
+        set beresp.ttl = 1h;  # en cache pour 1h
+        set beresp.grace = 1h;
         return(deliver);
     }
 
