@@ -1,3 +1,3 @@
-volumes/*
-images/microwebservices-api/
 .env
+volumes
+images/microwebservices-api/
