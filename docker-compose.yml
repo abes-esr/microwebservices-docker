@@ -15,6 +15,7 @@ services:
     restart: unless-stopped
     mem_limit: ${MEM_LIMIT}
     memswap_limit: ${MEM_LIMIT}
+    cpus: ${CPU_LIMIT}
     ports:
       - ${MICROWEBSERVICE_VARNISH_HTTP_PORT}:80
     volumes:
@@ -42,6 +43,7 @@ services:
     restart: unless-stopped
     mem_limit: ${MEM_LIMIT}
     memswap_limit: ${MEM_LIMIT}
+    cpus: ${CPU_LIMIT}
     ports:
       - ${MICROWEBSERVICE_HTTP_PORT}:8080
     healthcheck:
@@ -75,6 +77,7 @@ services:
     restart: unless-stopped
     mem_limit: ${MEM_LIMIT}
     memswap_limit: ${MEM_LIMIT}
+    cpus: ${CPU_LIMIT}
     environment:
       BACON_RSS_URL: 'http://microwebservices-api:8080/MicroWebServices/?servicekey=bacon_rss&format=application/xml'
       BACON_MAX_URL_TO_WARM: ${BACON_MAX_URL_TO_WARM}
@@ -103,6 +106,7 @@ services:
     restart: unless-stopped
     mem_limit: ${MEM_LIMIT}
     memswap_limit: ${MEM_LIMIT}
+    cpus: ${CPU_LIMIT}
     environment:
       BACON_RSS_URL: 'http://microwebservices-api:8080/MicroWebServices/?servicekey=bacon_rss&format=application/xml'
       BACON_MAX_URL_TO_WARM: ${BACON_MAX_URL_TO_WARM}
