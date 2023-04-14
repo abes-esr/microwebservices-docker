@@ -65,15 +65,15 @@ services:
 
 
   ###############################
-  # bacon-cache-warmer est le conteneur
+  # microwebservices-bacon-cache-warmer est le conteneur
   # qui implémente le chauffeur de cache
   # des packages KBART de BACON
   # cf https://github.com/abes-esr/bacon-cache-warmer-docker#readme
   # ----
   # ci-dessous pour chauffer que les KBART non datés
-  bacon-cache-warmer-kbart-withoutdate:
+  microwebservices-bacon-cache-warmer-kbart-withoutdate:
     image: abesesr/bacon-cache-warmer:1.3.1
-    container_name: bacon-cache-warmer-kbart-withoutdate
+    container_name: microwebservices-bacon-cache-warmer-kbart-withoutdate
     restart: unless-stopped
     mem_limit: ${MEM_LIMIT}
     memswap_limit: ${MEM_LIMIT}
@@ -100,9 +100,9 @@ services:
       - "co.elastic.logs/processors.add_fields.fields.abes_middleware=adhoc"
   # ----
   # ci-dessous pour chauffer les KBART datés
-  bacon-cache-warmer-kbart-withdate:
+  microwebservices-bacon-cache-warmer-kbart-withdate:
     image: abesesr/bacon-cache-warmer:1.3.1
-    container_name: bacon-cache-warmer-kbart-withdate
+    container_name: microwebservices-bacon-cache-warmer-kbart-withdate
     restart: unless-stopped
     mem_limit: ${MEM_LIMIT}
     memswap_limit: ${MEM_LIMIT}
