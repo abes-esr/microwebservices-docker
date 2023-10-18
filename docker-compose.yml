@@ -86,7 +86,7 @@ services:
       BACON_CACHEWARMER_RUN_AT_STARTUP: ${BACON_CACHEWARMER_RUN_AT_STARTUP}
       BACON_CACHEWARMER_JUST_ONCE: ${BACON_CACHEWARMER_JUST_ONCE}
       # SED pour chauffer que les KBART non datés
-      BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\([A-Z_\-]\+\)\(_[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
+      BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\([A-Z_\-]\+\)\(_[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&para4=\1\&para5=\1\&format=application/vnd.ms-excel#g'
     depends_on:
       microwebservices-varnish:
         condition: service_started
@@ -115,7 +115,7 @@ services:
       BACON_CACHEWARMER_RUN_AT_STARTUP: ${BACON_CACHEWARMER_RUN_AT_STARTUP}
       BACON_CACHEWARMER_JUST_ONCE: ${BACON_CACHEWARMER_JUST_ONCE}
       # SED pour chauffer tous les KBART (avec des dates)
-      BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\(.*\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&format=application/vnd.ms-excel#g'
+      BACON_URL_SED_BEFORE_WARM: 's#http://bacon.abes.fr/package2kbart/\(.*\)#http://microwebservices-varnish:80/MicroWebServices/?servicekey=bacon_pck2kbart\&para1=\1\&para2=\1\&para3=\1\&para4=\1\&para5=\1\&format=application/vnd.ms-excel#g'
     depends_on:
       microwebservices-varnish:
         condition: service_started
