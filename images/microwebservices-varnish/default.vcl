@@ -78,11 +78,9 @@ sub vcl_backend_response {
         return(deliver);
     }
     
-    # met en cache les packages bacon datés avec des extensions .xml ou .json
+    # met en cache les packages bacon datés avec des extensions .json
     # (remarque: ces urls ne passe pas par le service "bacon_pck2kbart")
-    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.xml
     # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.json
-    # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/xml
     # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=text/json
     if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_package2kbart&params=[A-Z_-]+_[0-9]{4}") {
         unset beresp.http.Set-Cookie;
@@ -90,8 +88,24 @@ sub vcl_backend_response {
         set beresp.grace = 300d;
         return(deliver);
     }
-    # idem pour les .json et .xml non datés
+    # idem pour les .json non datés
     if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_package2kbart&params=[A-Z_-]") {
+        unset beresp.http.Set-Cookie;
+        set beresp.ttl = 12h;  # en cache pour 12h
+        set beresp.grace = 12h;
+        return(deliver);
+    }
+    # servicekey specifique a la recuperation progressive des .xml (dates)
+    # exemple d'URL publique : https://bacon.abes.fr/package2kbart/JSTOR_COUPERIN_IRELAND_2019-04-11.xml
+    # exemple d'URL interne : /MicroWebServices/?servicekey=bacon_package2kbart&params=JSTOR_COUPERIN_IRELAND_2019-04-11&format=application/xml
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_pck2kbart_fast&para1=[A-Z_-]+_[0-9]{4}") {
+        unset beresp.http.Set-Cookie;
+        set beresp.ttl = 300d;  # en cache pour 300 jours
+        set beresp.grace = 300d;
+        return(deliver);
+    }
+    # servicekey specifique a la recuperation progressive des .xml (non dates)
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=bacon_pck2kbart_fast&para1=[A-Z_-]") {
         unset beresp.http.Set-Cookie;
         set beresp.ttl = 12h;  # en cache pour 12h
         set beresp.grace = 12h;
