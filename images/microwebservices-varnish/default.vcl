@@ -48,12 +48,12 @@ sub vcl_backend_response {
     # met en cache le <ppn>.xml
     # exemple d'URL publique : https://www.sudoc.fr/145561143.xml
     # exemple d'URL interne : /MicroWebServices/?servicekey=biblio&ppn=145561143&format=application/xml
-    if (bereq.url ~ "^/MicroWebServices/\?servicekey=biblio&.+") {
-        unset beresp.http.Set-Cookie;
-        set beresp.ttl = 10s;  # en cache pour 10 secondes
-        set beresp.grace = 10s;
-        return (deliver);
-    }
+    #if (bereq.url ~ "^/MicroWebServices/\?servicekey=biblio&.+") {
+    #    unset beresp.http.Set-Cookie;
+    #    set beresp.ttl = 10s;  # en cache pour 10 secondes
+    #    set beresp.grace = 10s;
+    #    return (deliver);
+    #}
 
 
     # met en cache les packages bacon datés
