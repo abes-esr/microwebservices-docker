@@ -58,7 +58,7 @@ sub vcl_backend_response {
     # met en cache les entrees et sorties d un titre dans bouquets Sudoc limite a 1 seul mois entier
     # exemple d'URL publique : https://www.sudoc.fr/services/diffbouquet/2025-12
     # exemple d'URL interne : /MicroWebServices/?servicekey=diffbouquet&ladate1=2025-12&ladate2=2025-12&ladate3=2025-12&ladate4=2025-12&format=application/vnd.ms-excel
-    if (bereq.url ~ "^/MicroWebServices/?servicekey=diffbouquet&ladate1=[0-9]{4}-[0-1]{1}[0-9]{1}") {
+    if (bereq.url ~ "^/MicroWebServices/\?servicekey=diffbouquet&ladate1=[0-9]{4}-[0-1]{1}[0-9]{1}") {
         unset beresp.http.Set-Cookie;
         set beresp.ttl = 300d;  # en cache pour 300 jours
         set beresp.grace = 300d;
